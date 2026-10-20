@@ -4,6 +4,8 @@
 
 A reproducible PySpark and PyDeequ project that detects missing ages, duplicate customer IDs, invalid values, inconsistent emails, and stale records. Docker packages the runtime; JSON reports make audit results reviewable.
 
+**[Download the portfolio submission PDF](docs/Customer_Data_Quality_Portfolio_Submission.pdf)**
+
 ## Submission summary
 
 I built a containerized customer-data validation workflow using native PySpark transformations and PyDeequ constraint verification. A demonstrated four-record run detected repeated customer IDs and ages of -5 and 150, and produced saved audit and profiling reports.
