@@ -1,0 +1,32 @@
+name: Data quality sample
+on:
+  push:
+    paths:
+      - 'projects/data-quality/**'
+      - '.github/workflows/data-quality.yml'
+  pull_request:
+    paths:
+      - 'projects/data-quality/**'
+      - '.github/workflows/data-quality.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sample-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: projects/data-quality
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and run sample
+        run: docker compose run --build --rm data-quality
+      - name: Verify generated reports
+        run: python3 -m unittest discover -s tests -v
+      - name: Save reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-quality-reports
+          path: projects/data-quality/reports/*.json

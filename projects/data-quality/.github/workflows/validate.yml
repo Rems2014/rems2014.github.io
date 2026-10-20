@@ -1,0 +1,21 @@
+name: Validate sample pipeline
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  sample-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and run the sample
+        run: docker compose run --build --rm data-quality
+      - name: Verify report values
+        run: python3 -m unittest discover -s tests -v
+      - name: Retain reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-quality-reports
+          path: reports/*.json
