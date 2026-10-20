@@ -106,7 +106,7 @@ The active portfolio CI workflow is at the repository root and runs this project
 
 ## Verification and limitations
 
-The original Docker run produced the included baseline reports. The portfolio revision aligns age thresholds, makes report storage configurable, and adds callback cleanup. Syntax, baseline-report contracts, and Compose configuration are checked locally. The revised container also needs a successful GitHub workflow run before a fresh end-to-end verification can be claimed.
+The original Docker run produced the included baseline reports. The portfolio revision aligns age thresholds, makes report storage configurable, and adds callback cleanup. Syntax, baseline-report contracts, and Compose configuration passed locally. A fresh [GitHub Actions run](https://github.com/Rems2014/rems2014.github.io/actions/runs/39507885239) also passed: Docker build, complete sample execution, both generated-report checks, and report artifact upload.
 
 No external ingestion, automated quarantine, production deployment, or large-scale benchmark is included. The base-image tag and Maven dependencies still depend on upstream availability.
 
